@@ -4,11 +4,13 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 import yt_dlp
 import os
 
+# Logging
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
+# Bot Token (Environment Variable ကနေယူ)
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 
 music_queue = []
@@ -67,3 +69,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Web Server ထည့်မယ် (Render အတွက်)
+import flask
+app = flask.Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+if __name__ != '__main__':
+    import threading
+    threading.Thread(target=lambda: app.run(host='0.0.0.0', port=10000)).start()
