@@ -1,2 +1,2 @@
 #!/bin/bash
-python music_bot.py
+python3 music_bot.py
